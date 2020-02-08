@@ -1,6 +1,8 @@
 import React from 'react';
-
-import './App.css';
+import './App.scss';
+import Menu from '../Menu/Menu';
+import PaletteContainer from '../PaletteContainer/PaletteContainer';
+import Folder from '../Folder/Folder';
 
 function App() {
   return (
@@ -8,6 +10,9 @@ function App() {
       <header className="App-header">
         <h1>hey</h1>
       </header>
+      <Menu />
+      <PaletteContainer />
+      <Folder />
     </div>
   );
 }
