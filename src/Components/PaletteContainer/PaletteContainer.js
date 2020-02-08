@@ -4,10 +4,9 @@ import Color from '../Color/Color';
 
 const PaletteContainer = () => {
   return (
-    <>
-    <h2>it's the palette container</h2>
-    <Color />
-    </>
+    <section>
+      <h2> its the palette container</h2>
+    </section>
   )
 }
 
