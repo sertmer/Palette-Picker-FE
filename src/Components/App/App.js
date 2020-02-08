@@ -2,18 +2,23 @@ import React from 'react';
 import './App.scss';
 import Menu from '../Menu/Menu';
 import PaletteContainer from '../PaletteContainer/PaletteContainer';
-import Folder from '../Folder/Folder';
+import FoldersContainer from '../FoldersContainer/FoldersContainer';
+import NoURLMatch from '../NoURLMatch/NoURLMatch.test';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <header className="App-header">
-        <h1>hey</h1>
+        <h1>Palette Picker</h1>
       </header>
-      <Menu />
-      <PaletteContainer />
-      <Folder />
-    </div>
+      <Switch>
+        <Route exact path='/' component={PaletteContainer} />
+        <Route exact path='/' component={Menu}/>
+        <Route exact path='/folders' component={FoldersContainer} />
+        <Route component={NoURLMatch} />
+      </Switch>
+    </main>
   );
 }
 
