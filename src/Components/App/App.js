@@ -1,13 +1,14 @@
 import React, { useReducer, createContext, useContext } from 'react';
 import './App.scss';
 import FoldersContainer from '../FoldersContainer/FoldersContainer';
+import Folder from '../Folder/Folder';
 import NoURLMatch from '../NoURLMatch/NoURLMatch.test';
 import Main from '../Main/Main';
 import { Route, Switch } from 'react-router-dom';
 
 const newColorGenerator = () => {
   return Math.floor(Math.random()*16777215).toString(16);
-}
+};
 const defaultColors = [
   {color: newColorGenerator(), locked: false},
   {color: newColorGenerator(), locked: false},
@@ -55,6 +56,11 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={Main} />
           <Route exact path='/folders' component={FoldersContainer} />
+          <Route exact path='/folders/:folderId/palettes' render={({ match }) => {
+            const folderId = match.params
+            return <Folder id={folderId} />
+          }} 
+          />
           <Route component={NoURLMatch} />
         </Switch>
       </main>
