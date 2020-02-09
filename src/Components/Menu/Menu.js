@@ -5,17 +5,24 @@ import './Menu.scss';
 import { Link } from 'react-router-dom';
 import shuffle from '../../Images/001-random.svg';
 import heart from '../../Images/002-heart.svg'
-import folder from '../../Images/003-folder.svg'
+import folderIcon from '../../Images/003-folder.svg'
 
 export const Menu = () => {
-  const [ project, setProject ] = useState({});
+  const [ folder, setFolder ] = useState({});
   const [ folders, setFolders ] = useState([]);
   const { state, dispatch } = useStore();
+
+  let handleClick = () => {
+    // call post folder from apiCalls
+  }
+  
+  let handleChange = (e) => {
+    setFolder({ [e.target.name]: e.target.value })
+  }
 
   useEffect(() => {
     getFolders()
       .then(data => {
-        setProject({folder_name: '', paletteName: '', colors: []})
         setFolders(data)
       })
       .catch(error => console.error(`Something went wrong ${error}`))
@@ -29,9 +36,10 @@ export const Menu = () => {
   return (
     <nav className='vertical-menu menu'>
       <Link to={'/folders'}>
-        <img className='icon' src={folder} alt='icon of a folder'></img>
+        <img className='icon' src={folderIcon} alt='icon of a folder'></img>
       </Link>
-      <input type='text' placeholder='Create New Folder'></input>
+      <input type='text' name='folder_name' onChange={(e) => handleChange(e)} placeholder='Create New Folder'></input>
+      <button type='button' onClick={() => handleClick()}>Create New Folder</button>
       <p>or</p>
       <select>
         {selectOptions}
