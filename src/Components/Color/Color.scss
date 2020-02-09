@@ -2,6 +2,15 @@
   height: 90vh;
   width: 20vw;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.lock-icon {
+  width: 5vw;
+  height: 5vh;
+    &:hover {
+      cursor: pointer;
+    }
 }
