@@ -7,7 +7,7 @@ const PaletteContainer = () => {
   const { state, dispatch } = useStore();
 
   let colorsToDisplay = state.map((element, idx) => {
-    return <Color key={idx} color={element.color} locked={element.locked}/>
+    return <Color id={idx} key={idx} color={element.color.toUpperCase()} locked={element.locked}/>
   })
   return (
     <section className='palette-container'>

@@ -24,7 +24,15 @@ const reducer = (state = defaultColors, action = {}) => {
         }
         return element.color = newColorGenerator();
       });
+    case 'TOGGLE LOCK':
+      let newState = state.map((element, idx) => {
 
+        if (idx === action.id) {
+          return { color: element.color, locked: !element.locked }
+        }
+          return element
+      })
+      return newState
     default:
       return state;
   };
@@ -37,7 +45,7 @@ export const useStore = () => useContext(ColorsContext);
 const App = () => {
   const [state, dispatch] = useReducer(reducer, defaultColors)
   const value = { state, dispatch }
-  
+
   return (
     <ColorsContext.Provider value={value}>
       <main className="App">
