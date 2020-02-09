@@ -15,7 +15,7 @@ const Folder = ({ id }) => {
   let palettesArray = palettes.map(palette => {
 
     let paletteArr = Object.values(palette)
-    console.log(paletteArr)
+
     let colorsArray = [
       paletteArr[2], 
       paletteArr[3], 
