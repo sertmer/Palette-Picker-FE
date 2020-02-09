@@ -11,7 +11,7 @@ export const Menu = () => {
 
   return (
     <nav className='vertical-menu menu'>
-      <Link>
+      <Link to={'/folders'}>
         <img className='icon' src={folder} alt='icon of a folder'></img>
       </Link>
       <input type='text' placeholder='Create New Folder'></input>
