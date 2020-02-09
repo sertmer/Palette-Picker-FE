@@ -22,7 +22,7 @@ const reducer = (state = defaultColors, action = {}) => {
         if (element.locked) {
           return element
         }
-        return element.color = newColorGenerator();
+        return { color: newColorGenerator(), locked: false }
       });
     case 'TOGGLE LOCK':
       let newState = state.map((element, idx) => {

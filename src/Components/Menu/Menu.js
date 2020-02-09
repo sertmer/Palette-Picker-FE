@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useStore } from '../App/App.js';
 import './Menu.scss';
 import { Link } from 'react-router-dom';
 import shuffle from '../../Images/001-random.svg';
@@ -6,6 +7,8 @@ import heart from '../../Images/002-heart.svg'
 import folder from '../../Images/003-folder.svg'
 
 export const Menu = () => {
+  const { state, dispatch } = useStore();
+
   return (
     <nav className='vertical-menu menu'>
       <Link>
@@ -18,7 +21,7 @@ export const Menu = () => {
       </select>
       <input type='text' placeholder='Name This Palette'></input>
       <img className='icon' src={heart} alt='icon of a heart'></img>
-      <img  className='icon'src={shuffle} alt='shuffle icon'></img>
+      <img  className='icon' src={shuffle} alt='shuffle icon' onClick={() => dispatch({type: 'GENERATE COLORS', payload: state})}></img>
     </nav>
   )
 }
