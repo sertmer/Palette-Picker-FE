@@ -11,5 +11,8 @@
 
 .icon {
   width: 5vw;
+    &:hover {
+      cursor: pointer;
+    }
 }
 

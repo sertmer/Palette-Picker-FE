@@ -14,7 +14,7 @@ export const Menu = () => {
       <Link>
         <img className='icon' src={folder} alt='icon of a folder'></img>
       </Link>
-      <input type='text'placeholder='Create New Folder'></input>
+      <input type='text' placeholder='Create New Folder'></input>
       <p>or</p>
       <select>
         <option>project one</option>
