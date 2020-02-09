@@ -4,9 +4,10 @@ import PaletteContainer from '../PaletteContainer/PaletteContainer';
 import './Folder.scss';
 
 const Folder = ({ id }) => {
+  
   const [ palettes, setPalettes ] = useState([]);
 
-  useEffect((id) => {
+  useEffect(() => {
     getPalettes(id)
       .then(data => setPalettes(data))
       .catch(error => console.error(`Something went wrong ${error}`))
