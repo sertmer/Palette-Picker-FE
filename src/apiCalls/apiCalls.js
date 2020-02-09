@@ -1,14 +1,5 @@
-export const getFolders = async () => {
-  let url = window.location.href;
-  url = url.split('/');
-
-  if (url[2] === 'localhost:3000') {
-    url[2] = 'localhost:3001'
-  }
-  url[3] = 'folders';
-  url.splice(3, 0, 'api/v1');
-
-  url = url.join('/');
+export const getFolders = () => {
+  let url = process.env.REACT_APP_BACKEND_URL + '/api/v1/folders'
 
   return fetch(url)
     .then(res => {
@@ -18,21 +9,31 @@ export const getFolders = async () => {
       return res.json()})
 }
 
-export const getPalettes = async (id) => {
-  let url = window.location.href;
-  url = url.split('/');
-
-  if (url[2] === 'localhost:3000') {
-    url[2] = 'localhost:3001'
-  }
-  url.splice(3, 0, 'api/v1');
-
-  url = url.join('/');
-
+export const getPalettes = (id) => {
+  let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/${id}/palettes`
   return fetch(url)
     .then(res => {
       if(!res.ok) {
         throw Error('Failed fetching folders')
       }
       return res.json()})
+}
+
+export const postFolder = (folder) => {
+  let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/`
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(folder),
+    headers: {
+      'Content-Type': 'application/json'  
+    }
+  }
+
+  return fetch(url, options)
+    .then(res => {
+      if (!res.ok){
+        throw Error('Error posting folder')
+      }
+      return res.json()
+    })
 }
