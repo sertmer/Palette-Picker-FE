@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useStore } from '../App/App';
 import './PaletteContainer.scss'
 import Color from '../Color/Color';
 
-
 const PaletteContainer = () => {
-  const newColorGenerator = () => {
-    return Math.floor(Math.random()*16777215).toString(16);
-  }
-  let arr = [1, 2, 3, 4, 5];
-  let colorsToDisplay = arr.map((color, idx) => {
-    color = newColorGenerator()
-    return <Color key={idx} color={color} />
+  const { state, dispatch } = useStore();
+
+  let colorsToDisplay = state.map((element, idx) => {
+    return <Color key={idx} color={element.color} locked={element.locked}/>
   })
   return (
     <section className='palette-container'>
