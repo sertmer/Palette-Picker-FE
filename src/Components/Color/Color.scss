@@ -1,5 +1,7 @@
 .color-column {
   height: 90vh;
   width: 20vw;
-  // background-color: blue;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
