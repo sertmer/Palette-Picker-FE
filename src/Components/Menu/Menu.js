@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from '../App/App.js';
 import './Menu.scss';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,10 @@ import folder from '../../Images/003-folder.svg'
 
 export const Menu = () => {
   const { state, dispatch } = useStore();
+
+  useEffect(() => {
+    
+  })
 
   return (
     <nav className='vertical-menu menu'>
