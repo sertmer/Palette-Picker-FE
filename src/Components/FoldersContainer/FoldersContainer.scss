@@ -1,0 +1,15 @@
+.folders-container-div {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.folder-div {
+  margin: 5vw 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+}
+
+.folder-name-h2 {
+  margin-left: 2vw;
+}
