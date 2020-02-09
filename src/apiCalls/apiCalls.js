@@ -5,6 +5,7 @@ export const getFolders = async () => {
   if (url[2] === 'localhost:3000') {
     url[2] = 'localhost:3001'
   }
+  url[3] = 'folders';
   url.splice(3, 0, 'api/v1');
 
   url = url.join('/');
