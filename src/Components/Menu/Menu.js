@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { useStore } from '../App/App.js';
-import { getFolders } from '../../apiCalls/apiCalls'
+import { getFolders, postFolder } from '../../apiCalls/apiCalls'
 import './Menu.scss';
 import { Link } from 'react-router-dom';
 import shuffle from '../../Images/001-random.svg';
@@ -13,7 +13,15 @@ export const Menu = () => {
   const { state, dispatch } = useStore();
 
   let handleClick = () => {
-    // call post folder from apiCalls
+    postFolder(folder)
+      .then(res => {
+        let postedFolder = {
+          folder_name: folder.folder_name
+        }
+
+        setFolders([...folders, postedFolder])
+      })
+      .catch(err => console.log(err))
   }
   
   let handleChange = (e) => {
