@@ -57,7 +57,7 @@ const App = () => {
           <Route exact path='/' component={Main} />
           <Route exact path='/folders' component={FoldersContainer} />
           <Route exact path='/folders/:folderId/palettes' render={({ match }) => {
-            const folderId = match.params
+            const { folderId } = match.params
             return <Folder id={folderId} />
           }} 
           />
