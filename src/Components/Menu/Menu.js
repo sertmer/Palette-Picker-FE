@@ -16,7 +16,8 @@ export const Menu = () => {
     postFolder(folder)
       .then(res => {
         let postedFolder = {
-          folder_name: folder.folder_name
+          folder_name: folder.folder_name,
+          id: res.id
         }
 
         setFolders([...folders, postedFolder])
@@ -25,7 +26,9 @@ export const Menu = () => {
   }
   
   let handleChange = (e) => {
-    setFolder({ [e.target.name]: e.target.value })
+    if (e.target.value !== 'choose folder'){
+      setFolder({ [e.target.name]: e.target.value })
+    }
   }
 
   useEffect(() => {
@@ -49,7 +52,8 @@ export const Menu = () => {
       <input type='text' name='folder_name' onChange={(e) => handleChange(e)} placeholder='Create New Folder'></input>
       <button type='button' onClick={() => handleClick()}>Create New Folder</button>
       <p>or</p>
-      <select>
+      <select name='folder_name' onChange={(e) => handleChange(e)}>
+        <option>choose folder</option>
         {selectOptions}
       </select>
       <input type='text' placeholder='Name This Palette'></input>
