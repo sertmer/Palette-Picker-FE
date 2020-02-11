@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '../App/App.js';
-import { getFolders, postFolder } from '../../apiCalls/apiCalls'
+import { getFolders, postFolder, postPalette } from '../../apiCalls/apiCalls'
 import './Menu.scss';
 import { Link } from 'react-router-dom';
 import shuffle from '../../Images/001-random.svg';
@@ -12,6 +12,7 @@ export const Menu = () => {
   const [ folders, setFolders ] = useState([]);
   const [ paletteName, setPaletteName ] = useState('');
   const [ error, setError ] = useState('')
+  const [ success, setSuccess ] = useState('')
   const { state, dispatch } = useStore();
 
   let evaluateInput = (e) => {
@@ -38,17 +39,21 @@ export const Menu = () => {
   let handlePalettePost = () => {
     let folderName = folder.folder_name
     let matchingFolder = folders.find(folder => folder.folder_name === folderName)
+  
     let palette = {
-      folder_id: matchingFolder.id,
-      palette_name: paletteName,
-      color_one: state[0].color,
-      color_two: state[1].color,
-      color_three: state[2].color,
-      color_four: state[3].color,
-      color_five: state[4].color,
+      paletteName: paletteName,
+      colors: [
+        state[0].color,
+        state[1].color,
+        state[2].color,
+        state[3].color,
+        state[4].color
+      ]
     }
 
-    console.log(palette)
+    postPalette(palette, matchingFolder.id)
+      .then(res => setSuccess('saved!'))
+      .catch(err => console.log(err))
   }
 
   let handleFolderPost = () => {
@@ -65,7 +70,6 @@ export const Menu = () => {
   }
   
   let handleChange = (e) => {
-    console.log(e.target.name);
     if (e.target.name === 'choose_folder') {
       setFolder({ folder_name: e.target.value })
     } if (e.target.name === 'create_folder_input') {
@@ -111,6 +115,9 @@ export const Menu = () => {
         <p>{error}</p>
       }
       <img className='icon' name='heart' src={heart} alt='icon of a heart' onClick={(e) => evaluateInput(e)}></img>
+      { success && 
+        <p>{success}</p>
+      }
       <img  className='icon' name='shuffle' src={shuffle} alt='shuffle icon' onClick={() => dispatch({type: 'GENERATE COLORS', payload: state})}></img>
     </nav>
   )
