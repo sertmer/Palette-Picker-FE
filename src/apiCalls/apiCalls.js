@@ -37,3 +37,22 @@ export const postFolder = (folder) => {
       return res.json()
     })
 }
+
+export const postPalette = (palette, folder_id) => {
+  let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/${folder_id}/palettes`
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(palette),
+    headers: {
+      'Content-Type': 'application/json'  
+    }
+  }
+
+  return fetch(url, options)
+    .then(res => {
+      if (!res.ok){
+        throw Error('Error posting palette')
+      }
+      return res.json()
+    })
+}
