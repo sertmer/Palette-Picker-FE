@@ -1,5 +1,38 @@
-.palette-container {
+@import '../../_mixin.scss';
+
+
+.palette-container-normal {
   width: 85vw;
-  background-color: lavenderblush;
   display: flex;
+}
+
+.speech-bubble {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  padding: 5px;
+	position: relative;
+	background: #f0e8e8;
+  @include rounded-corners(25px);
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 0.625em solid transparent;
+	border-left-color: #dad4d4;
+	border-right: 0;
+	margin-top: -0.625em;
+	margin-right: -0.625em;
+}
+
+.inner-bubble-div {
+  display: flex;
+  display: hidden;
+  align-items: flex-start;
+  width: 100%;
 }

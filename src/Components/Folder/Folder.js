@@ -25,16 +25,15 @@ const Folder = ({ id }) => {
       paletteArr[6]]
 
     return (
-      <div>
-        <h2>{palette.palette_name}</h2>
+      <div className='palettes-viewer-div'>
         <PaletteContainer key={palette.id} id={palette.id} 
         palette={colorsArray} />
+        <h2 className='palette-name-h2'>{palette.palette_name}</h2>
       </div>)
   })
   return (
-    <div>
-    <h2>its the folder, ok?</h2>
-    {palettesArray}
+    <div className='folder'>
+      {palettesArray}
     </div>
   )
 }
