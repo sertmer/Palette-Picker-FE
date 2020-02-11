@@ -7,22 +7,27 @@ import lockedIcon from '../../Images/lock.svg';
 import unlockedIcon from '../../Images/unlock.svg';
 import heart from '../../Images/002-heart.svg';
 import { randomColorGenerator } from '../App/App';
+import { patchPalette } from '../../apiCalls/apiCalls';
 
 
-const displayEditMenu = (e) => {
-  e.target.parentNode.parentNode.nextSibling.classList.toggle('hidden')
+const displayEditMenu = (e, id=false) => {
+  if(!id) {
+    return e.target.parentNode.parentNode.nextSibling.classList.toggle('hidden')
+  }
+  e.target.parentNode.classList.toggle('hidden')
 }
+
 
 const PaletteContainer = ({ palette, name, id }) => {
   const [ paletteState, setPalette ] = useState([]);
   const { state, dispatch } = useStore();
   
   let colorsToDisplay, container, icon, text;
- 
+  
   const toggleLock = (e) => {
     dispatch({type: 'TOGGLE REVIEW LOCK', payload: {colorId: e.target.id, id}})
   }
-
+  
   const displayLock = (bool) => {
     if (!bool) {
       text = 'an icon of an unlocked lock'
@@ -32,6 +37,14 @@ const PaletteContainer = ({ palette, name, id }) => {
     return lockedIcon
   }
 
+  const handlePatch = (palette, name, id, e) => {
+    patchPalette(palette, name, id)
+      .then(res => console.log(res))
+      .then(data => console.log(data))
+      .catch(error => console.error(error))
+    displayEditMenu(e, id)
+  }
+  
   if (!palette) {
     colorsToDisplay = state.defaultColors.map((element, idx) => {
       return <Color id={idx} key={idx} color={element.color.toUpperCase()} 
@@ -75,7 +88,7 @@ const PaletteContainer = ({ palette, name, id }) => {
           </div>
           <img  className='palette-icon' src={shuffle} alt='shuffle icon' 
           onClick={() => dispatch({type: 'GENERATE PALETTE COLORS', payload: id})}></img>
-          <img className='palette-icon' src={heart} alt='icon of a heart'></img>
+          <img className='palette-icon' src={heart} alt='icon of a heart' onClick={(e) => handlePatch(palette, name, id, e)}></img>
         </div>
       </section>)
   }
