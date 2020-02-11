@@ -4,10 +4,10 @@ import { getFolders, postFolder } from '../../apiCalls/apiCalls'
 import './Menu.scss';
 import { Link } from 'react-router-dom';
 import shuffle from '../../Images/001-random.svg';
-import heart from '../../Images/002-heart.svg'
-import folderIcon from '../../Images/003-folder.svg'
+import heart from '../../Images/002-heart.svg';
+import folderIcon from '../../Images/003-folder.svg';
 
-export const Menu = () => {
+export const Menu = ({ editPalette }) => {
   const [ folder, setFolder ] = useState({});
   const [ folders, setFolders ] = useState([]);
   const { state, dispatch } = useStore();

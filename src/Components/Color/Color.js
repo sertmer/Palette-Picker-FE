@@ -10,7 +10,7 @@ const Color = ({color, locked, id, review, border}) => {
   locked ? icon = lockedIcon : icon = unlockedIcon;
   locked ? text = 'an icon of a locked lock' : text = 'an icon of an unlocked lock';
   let divStyle = {
-    backgroundColor: `#${color}`,
+    backgroundColor: `${color}`,
     borderRadius: `${border}`,
   }
 
