@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from '../App/App';
 import './PaletteContainer.scss'
 import Color from '../Color/Color';
@@ -19,7 +19,6 @@ const displayEditMenu = (e, id=false) => {
 
 
 const PaletteContainer = ({ palette, name, id }) => {
-  const [ paletteState, setPalette ] = useState([]);
   const { state, dispatch } = useStore();
   
   let colorsToDisplay, container, icon, text;
