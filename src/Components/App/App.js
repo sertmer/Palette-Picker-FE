@@ -11,11 +11,11 @@ export const newColorGenerator = () => {
 };
 const defaultState = {
   defaultColors: [
-    {color: `#${newColorGenerator()}`, locked: false},
-    {color: `#${newColorGenerator()}`, locked: false},
-    {color: `#${newColorGenerator()}`, locked: false},
-    {color: `#${newColorGenerator()}`, locked: false},
-    {color: `#${newColorGenerator()}`, locked: false},
+    {color: `${newColorGenerator()}`, locked: false},
+    {color: `${newColorGenerator()}`, locked: false},
+    {color: `${newColorGenerator()}`, locked: false},
+    {color: `${newColorGenerator()}`, locked: false},
+    {color: `${newColorGenerator()}`, locked: false},
   ],
   currentPalettes: [],
 };
@@ -26,7 +26,7 @@ const reducer = (state = defaultState, action = {}) => {
         if (element.locked) {
           return element
         }
-        return { color: `#${newColorGenerator()}`, locked: false }
+        return { color: `${newColorGenerator()}`, locked: false }
       });
       return {defaultColors: newDefaultColors, currentPalettes: []}
     case 'TOGGLE LOCK':

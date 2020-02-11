@@ -23,7 +23,7 @@ const Color = ({color, locked, id, review, border}) => {
       </div>)
   } else {
     column = (
-      <div className='color-column' style={divStyle}>
+      <div className='color-column' style={{backgroundColor: `#${color}`}}>
         <img className='lock-icon' src={icon} alt={text} 
         onClick={() => dispatch({type:'TOGGLE LOCK', id})}/>
         <h2 className='color-h2'>#{color}</h2>
