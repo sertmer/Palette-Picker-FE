@@ -54,6 +54,8 @@ export const Menu = () => {
     postPalette(palette, matchingFolder.id)
       .then(res => setSuccess('saved!'))
       .catch(err => console.log(err))
+    
+    setPaletteName('')
   }
 
   let handleFolderPost = () => {
@@ -97,17 +99,17 @@ export const Menu = () => {
       <Link to={'/folders'}>
         <img className='icon' src={folderIcon} alt='icon of a folder'></img>
       </Link>
-      <input type='text' name='create_folder_input' onChange={(e) => handleChange(e)} placeholder='Create New Folder'></input>
+      <input type='text' name='create_folder_input' value={null} onChange={(e) => handleChange(e)} placeholder='Create New Folder'></input>
       {error === 'enter a folder name' && 
         <p>{error}</p>
       }
       <button type='button' name='create_folder' onClick={(e) => evaluateInput(e)}>Create New Folder</button>
       <p>Save Palette</p>
-      <select name='choose_folder' onChange={(e) => handleChange(e)}>
+      <select name='choose_folder'  onChange={(e) => handleChange(e)}>
         <option>choose existing folder</option>
         {selectOptions}
       </select>
-      <input type='text' name='name_palette' placeholder='Name This Palette' onChange={(e) => handleChange(e)}></input>
+      <input type='text' name='name_palette' value={paletteName} placeholder='Name This Palette' onChange={(e) => handleChange(e)}></input>
       { error === 'select a folder' && 
         <p>{error}</p>
       }
