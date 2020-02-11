@@ -11,12 +11,12 @@ const Color = ({color, locked, id, review, border}) => {
   locked ? text = 'an icon of a locked lock' : text = 'an icon of an unlocked lock';
   let divStyle = {
     backgroundColor: `#${color}`,
-    borderRadius: `${border}`
+    borderRadius: `${border}`,
   }
 
   if (review) {
   column = (
-      <div className='color-column' style={divStyle}>
+      <div className='color-column bubble' style={divStyle}>
         <img className='lock-icon hidden' src={icon} alt={text} 
         onClick={() => dispatch({type:'TOGGLE LOCK', id})}/>
         <h2 className='color-h2 hidden'>#{color}</h2>
