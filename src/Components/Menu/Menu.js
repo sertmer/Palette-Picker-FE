@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStore } from '../App/App.js';
 import { getFolders, postFolder } from '../../apiCalls/apiCalls'
 import './Menu.scss';
@@ -10,9 +10,26 @@ import folderIcon from '../../Images/003-folder.svg'
 export const Menu = () => {
   const [ folder, setFolder ] = useState({});
   const [ folders, setFolders ] = useState([]);
+  const [ paletteName, setPaletteName ] = useState('');
   const { state, dispatch } = useStore();
 
-  let handleClick = () => {
+  let handlePalettePost = () => {
+    let folderName = folder.folder_name
+    let matchingFolder = folders.find(folder => folder.folder_name === folderName)
+    let palette = {
+      folder_id: matchingFolder.id,
+      palette_name: paletteName,
+      color_one: state[0].color,
+      color_two: state[1].color,
+      color_three: state[2].color,
+      color_four: state[3].color,
+      color_five: state[4].color,
+    }
+
+    // conditional for no folder
+  }
+
+  let handleFolderPost = () => {
     postFolder(folder)
       .then(res => {
         let postedFolder = {
@@ -26,8 +43,10 @@ export const Menu = () => {
   }
   
   let handleChange = (e) => {
-    if (e.target.value !== 'choose folder'){
+    if (e.target.name === 'folder_name' && e.target.value !== 'choose existing folder'){
       setFolder({ [e.target.name]: e.target.value })
+    } else {
+      setPaletteName(e.target.value)
     }
   }
 
@@ -50,17 +69,27 @@ export const Menu = () => {
         <img className='icon' src={folderIcon} alt='icon of a folder'></img>
       </Link>
       <input type='text' name='folder_name' onChange={(e) => handleChange(e)} placeholder='Create New Folder'></input>
-      <button type='button' onClick={() => handleClick()}>Create New Folder</button>
-      <p>or</p>
+      <button type='button' onClick={() => handleFolderPost()}>Create New Folder</button>
+      <p>Save Palette</p>
       <select name='folder_name' onChange={(e) => handleChange(e)}>
-        <option>choose folder</option>
+        <option>choose existing folder</option>
         {selectOptions}
       </select>
-      <input type='text' placeholder='Name This Palette'></input>
-      <img className='icon' src={heart} alt='icon of a heart'></img>
+      { folder.folder_name &&
+        <input type='text' placeholder='Name This Palette' onChange={(e) => handleChange(e)}></input>
+      }
+      { paletteName &&
+        <img className='icon' src={heart} alt='icon of a heart' onClick={() => handlePalettePost()}></img>
+      }
       <img  className='icon' src={shuffle} alt='shuffle icon' onClick={() => dispatch({type: 'GENERATE COLORS', payload: state})}></img>
     </nav>
   )
 }
 
 export default Menu;
+
+
+// conditional render to select pal
+//--- folder is chosen 
+//--- palette name input appears
+//--- heart appears
