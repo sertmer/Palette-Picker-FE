@@ -11,7 +11,29 @@ export const Menu = () => {
   const [ folder, setFolder ] = useState({});
   const [ folders, setFolders ] = useState([]);
   const [ paletteName, setPaletteName ] = useState('');
+  const [ error, setError ] = useState('')
   const { state, dispatch } = useStore();
+
+  let evaluateInput = (e) => {
+    if (e.target.name === 'choose_folder' && e.target.value === 'choose existing folder') {
+      setError('select a folder')
+    }
+    if (e.target.name === 'heart' && !paletteName) {
+      setError('enter a palette name')
+    }
+    if (e.target.name === 'create_folder' && !folder.folder_name) {
+      setError('enter a folder name')
+    }
+    if (e.target.name === 'create_folder' && folder.folder_name) {
+      handleFolderPost()
+    }
+    if (e.target.name === 'heart' && !folder.folder_name) {
+      setError('select a folder')
+    }
+    if (e.target.name === 'heart' && paletteName && folder.folder_name) {
+      handlePalettePost()
+    }
+  }
 
   let handlePalettePost = () => {
     let folderName = folder.folder_name
@@ -26,7 +48,7 @@ export const Menu = () => {
       color_five: state[4].color,
     }
 
-    // conditional for no folder
+    console.log(palette)
   }
 
   let handleFolderPost = () => {
@@ -43,9 +65,12 @@ export const Menu = () => {
   }
   
   let handleChange = (e) => {
-    if (e.target.name === 'folder_name' && e.target.value !== 'choose existing folder'){
-      setFolder({ [e.target.name]: e.target.value })
-    } else {
+    console.log(e.target.name);
+    if (e.target.name === 'choose_folder') {
+      setFolder({ folder_name: e.target.value })
+    } if (e.target.name === 'create_folder_input') {
+      setFolder({ folder_name: e.target.value }) 
+    } if (e.target.name === 'name_palette') {
       setPaletteName(e.target.value)
     }
   }
@@ -68,28 +93,29 @@ export const Menu = () => {
       <Link to={'/folders'}>
         <img className='icon' src={folderIcon} alt='icon of a folder'></img>
       </Link>
-      <input type='text' name='folder_name' onChange={(e) => handleChange(e)} placeholder='Create New Folder'></input>
-      <button type='button' onClick={() => handleFolderPost()}>Create New Folder</button>
+      <input type='text' name='create_folder_input' onChange={(e) => handleChange(e)} placeholder='Create New Folder'></input>
+      {error === 'enter a folder name' && 
+        <p>{error}</p>
+      }
+      <button type='button' name='create_folder' onClick={(e) => evaluateInput(e)}>Create New Folder</button>
       <p>Save Palette</p>
-      <select name='folder_name' onChange={(e) => handleChange(e)}>
+      <select name='choose_folder' onChange={(e) => handleChange(e)}>
         <option>choose existing folder</option>
         {selectOptions}
       </select>
-      { folder.folder_name &&
-        <input type='text' placeholder='Name This Palette' onChange={(e) => handleChange(e)}></input>
+      <input type='text' name='name_palette' placeholder='Name This Palette' onChange={(e) => handleChange(e)}></input>
+      { error === 'select a folder' && 
+        <p>{error}</p>
       }
-      { paletteName &&
-        <img className='icon' src={heart} alt='icon of a heart' onClick={() => handlePalettePost()}></img>
+      { error === 'enter a palette name' && 
+        <p>{error}</p>
       }
-      <img  className='icon' src={shuffle} alt='shuffle icon' onClick={() => dispatch({type: 'GENERATE COLORS', payload: state})}></img>
+      <img className='icon' name='heart' src={heart} alt='icon of a heart' onClick={(e) => evaluateInput(e)}></img>
+      <img  className='icon' name='shuffle' src={shuffle} alt='shuffle icon' onClick={() => dispatch({type: 'GENERATE COLORS', payload: state})}></img>
     </nav>
   )
 }
 
 export default Menu;
 
-
-// conditional render to select pal
-//--- folder is chosen 
-//--- palette name input appears
-//--- heart appears
+// surface error if palette is not named
