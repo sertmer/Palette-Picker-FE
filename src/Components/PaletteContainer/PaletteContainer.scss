@@ -1,5 +1,107 @@
-.palette-container {
+@import '../../_mixin.scss';
+
+.palette-container-normal {
+  display:flex;
   width: 85vw;
-  background-color: lavenderblush;
+}
+
+.speech-bubble {
   display: flex;
+  height: 100%;
+  width: 72%;
+  margin-right: -70px;
+	position: relative;
+	background: #f0e8e8;
+  @include rounded-corners(25px);
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 0.625em solid transparent;
+	border-left-color: #f0e8e8;
+	border-right: 0;
+	margin-top: -0.625em;
+	margin-right: -0.625em;
+}
+
+.inner-bubble-div {
+  display: flex;
+  width: 100%;
+}
+
+.palette-review-div-wrapper {
+	width: 100%;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.palette-name-h2 {
+  width: 10%;
+  margin-left: -20px;
+  margin-right: 40px;
+}
+
+.edit-delete-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+	margin-top: 15px;
+}
+
+.edit-btn {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    cursor:pointer;
+  }
+}
+
+.delete-btn {
+  font-size: 2rem;
+  &:hover {
+    cursor:pointer;
+  }
+}
+
+.edit-menu {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+	margin-left: -35px;
+}
+
+.lock-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: space-around;
+	margin-top: 15px;
+  margin-left: 90px;
+  width: 75vw;
+}
+
+.palette-icon {
+  width: 2rem;
+  padding: 10px;
+  margin-left: 10px;
+  &:hover {
+    cursor:pointer;
+    transform: scale(1.2)
+  }
+}
+
+.lock-icon {
+  width: 1rem;
+	height: 1rem;
+}
+
+.hidden {
+	visibility: hidden;
 }

@@ -1,40 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useStore } from '../App/App';
 import { getPalettes } from '../../apiCalls/apiCalls';
 import PaletteContainer from '../PaletteContainer/PaletteContainer';
 import './Folder.scss';
 
 const Folder = ({ id }) => {
-  
-  const [ palettes, setPalettes ] = useState([]);
+  const { state, dispatch } = useStore();
 
   useEffect(() => {
     getPalettes(id)
-      .then(data => setPalettes(data))
+      .then(data => {
+        let lockedDataArr = data.map(element => {
+          return (
+            {
+              id: element.id, 
+              palette_name: element.palette_name,
+              palette: [ 
+                {color: element.color_one, locked: true},
+                {color: element.color_two, locked: true},
+                {color: element.color_three, locked: true},
+                {color: element.color_four, locked: true},
+                {color: element.color_five, locked: true},
+              ],
+              folder_id: element.folder_id
+            }
+          )
+        })
+        dispatch({type: 'SET CURRENT PALETTES', payload: lockedDataArr})
+      })
       .catch(error => console.error(`Something went wrong ${error}`))
   }, [])
 
-  let palettesArray = palettes.map(palette => {
-
+  let palettesArray = state.currentPalettes.map(palette => {
     let paletteArr = Object.values(palette)
-
-    let colorsArray = [
-      paletteArr[2], 
-      paletteArr[3], 
-      paletteArr[4], 
-      paletteArr[5], 
-      paletteArr[6]]
-
     return (
-      <div>
-        <h2>{palette.palette_name}</h2>
-        <PaletteContainer key={palette.id} id={palette.id} 
-        palette={colorsArray} />
-      </div>)
+        <div className='palettes-viewer-div' key={palette.id}>
+          <PaletteContainer key={palette.id} id={palette.id} 
+          palette={palette.palette} name={palette.palette_name}/>
+        </div>)
   })
+
+
   return (
-    <div>
-    <h2>its the folder, ok?</h2>
-    {palettesArray}
+    <div className='folder'>
+      {palettesArray}
     </div>
   )
 }

@@ -4,8 +4,9 @@ import { getFolders, postFolder, postPalette } from '../../apiCalls/apiCalls'
 import './Menu.scss';
 import { Link } from 'react-router-dom';
 import shuffle from '../../Images/001-random.svg';
-import heart from '../../Images/002-heart.svg'
-import folderIcon from '../../Images/003-folder.svg'
+import heart from '../../Images/002-heart.svg';
+import folderIcon from '../../Images/003-folder.svg';
+
 
 export const Menu = () => {
   const [ newFolder, setNewFolder ] = useState({})
@@ -45,11 +46,11 @@ export const Menu = () => {
     let palette = {
       paletteName: paletteName,
       colors: [
-        state[0].color,
-        state[1].color,
-        state[2].color,
-        state[3].color,
-        state[4].color
+        `#${state[0].color}`,
+        `#${state[1].color}`,
+        `#${state[2].color}`,
+        `#{state[3].color}`,
+        `#${state[4].color}`
       ]
     }
 
@@ -134,5 +135,3 @@ export const Menu = () => {
 }
 
 export default Menu;
-
-// set up newFolder state and selectedFolder state
