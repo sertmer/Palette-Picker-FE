@@ -56,7 +56,7 @@ export const Menu = () => {
     postPalette(palette, matchingFolder.id)
       .then(res => setPaletteSuccess('saved!'))
       .catch(err => console.log(err))
-    
+    setError('')
     setPaletteName('')
   }
 
@@ -72,6 +72,7 @@ export const Menu = () => {
       })
       .then(res => setFolderSuccess('created!'))
       .catch(err => console.log(err))
+    setError('')
     setNewFolder({folder_name: ''})
   }
   
