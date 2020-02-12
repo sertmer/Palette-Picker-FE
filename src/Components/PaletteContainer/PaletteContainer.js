@@ -9,6 +9,8 @@ import unlockedIcon from '../../Images/unlock.svg';
 import heart from '../../Images/002-heart.svg';
 import { randomColorGenerator } from '../App/App';
 import { patchPalette, deletePalette, deleteFolder } from '../../apiCalls/apiCalls';
+import PropTypes from 'prop-types'
+
 
 
 const displayEditMenu = (e, id=false) => {
@@ -40,7 +42,8 @@ const PaletteContainer = ({ palette, name, id }) => {
   }
 
   const handlePatch = (palette, name, id, e) => {
-    patchPalette(palette, name, id)
+    let folderId = window.location.pathname.split('/')[2]
+    patchPalette(palette, name, id, folderId)
       .then(res => console.log(res))
       .then(data => console.log(data))
       .catch(error => console.error(error))
@@ -119,3 +122,9 @@ const PaletteContainer = ({ palette, name, id }) => {
 }
 
 export default PaletteContainer;
+
+PaletteContainer.propTypes = {
+  palette: PropTypes.object,
+  name: PropTypes.string,
+  id: PropTypes.number
+}

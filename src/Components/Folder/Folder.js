@@ -3,6 +3,7 @@ import { useStore } from '../App/App';
 import { getPalettes } from '../../apiCalls/apiCalls';
 import PaletteContainer from '../PaletteContainer/PaletteContainer';
 import './Folder.scss';
+import PropTypes from 'prop-types';
 
 const Folder = ({ id }) => {
   const { state, dispatch } = useStore();
@@ -76,3 +77,7 @@ const Folder = ({ id }) => {
 }
 
 export default Folder;
+
+Folder.propTypes = {
+  id: PropTypes.number
+}

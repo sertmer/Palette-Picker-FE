@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should match the snapshot 1`] = `
+<nav
+  className="vertical-menu menu"
+>
+  <Link
+    to="/folders"
+  >
+    <img
+      alt="icon of a folder"
+      className="icon"
+      src="003-folder.svg"
+    />
+  </Link>
+  <input
+    name="create_folder_input"
+    onChange={[Function]}
+    placeholder="Create New Folder"
+    type="text"
+  />
+  <button
+    name="create_folder"
+    onClick={[Function]}
+    type="button"
+  >
+    Create New Folder
+  </button>
+  <p>
+    Save Palette
+  </p>
+  <select
+    name="choose_folder"
+    onChange={[Function]}
+  >
+    <option>
+      choose existing folder
+    </option>
+  </select>
+  <input
+    name="name_palette"
+    onChange={[Function]}
+    placeholder="Name This Palette"
+    type="text"
+    value=""
+  />
+  <img
+    alt="icon of a heart"
+    className="icon"
+    name="heart"
+    onClick={[Function]}
+    src="002-heart.svg"
+  />
+  <img
+    alt="shuffle icon"
+    className="icon"
+    name="shuffle"
+    onClick={[Function]}
+    src="001-random.svg"
+  />
+</nav>
+`;
