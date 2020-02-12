@@ -178,4 +178,72 @@ describe('apiCalls', () => {
       expect(postFolder(mockFolder)).rejects.toEqual(Error('fetch failed'))
     })
   })
+
+  describe('postPalette', () => {
+    let mockResponse, mockPalette, mockOptions, mockFolderId
+    beforeEach(() => {
+      mockResponse = { id: 2,
+        palette_name: 'colors to defeat trump', 
+        color_one: '#blue',
+        color_two: '#brown',
+        color_three: '#green',
+        color_four: '#ffffff',
+        color_five: '#11111',
+        folder_id: 2 
+      }
+      mockPalette = { id: 2,
+        palette_name: 'colors to defeat trump', 
+        color_one: '#blue',
+        color_two: '#brown',
+        color_three: '#green',
+        color_four: '#ffffff',
+        color_five: '#11111',
+        folder_id: 2 
+      }
+      mockOptions = {
+        method: 'POST',
+        body: JSON.stringify(mockPalette),
+        headers: {
+          'Content-Type': 'application/json'  
+        }
+      }
+      mockFolderId = 1
+  
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => {
+            return Promise.resolve(mockResponse)
+          }
+        })
+      })
+    })
+    it('should call fetch with the right url', () => {
+      let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/${mockFolderId}/palettes`
+      postPalette(mockPalette, mockFolderId)
+      expect(window.fetch).toHaveBeenCalledWith(url, mockOptions)
+    })
+
+    it('return an id', () => {
+      expect(postPalette(mockPalette, mockFolderId)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(postPalette(mockPalette, mockFolderId)).rejects.toEqual(Error('Error posting folder'))
+    })
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(postPalette(mockPalette, mockFolderId)).rejects.toEqual(Error('fetch failed'))
+    })
+  })
 })
