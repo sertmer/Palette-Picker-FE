@@ -3,6 +3,7 @@ import { useStore } from '../App/App';
 import './Color.scss';
 import lockedIcon from '../../Images/lock.svg';
 import unlockedIcon from '../../Images/unlock.svg';
+import PropTypes from 'prop-types';
 
 const Color = ({color, locked, id, review, border}) => {
   const { state, dispatch } = useStore();
@@ -38,3 +39,11 @@ const Color = ({color, locked, id, review, border}) => {
 }
 
 export default Color;
+
+Color.propTypes = {
+  color: PropTypes.string.isRequired,
+  locked: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  review: PropTypes.bool.isRequired,
+  border: PropTypes.string
+}
