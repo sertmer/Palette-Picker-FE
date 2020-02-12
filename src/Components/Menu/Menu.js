@@ -46,11 +46,11 @@ export const Menu = () => {
     let palette = {
       paletteName: paletteName,
       colors: [
-        `#${state[0].color}`,
-        `#${state[1].color}`,
-        `#${state[2].color}`,
-        `#{state[3].color}`,
-        `#${state[4].color}`
+        `#${state.defaultColors[0].color}`,
+        `#${state.defaultColors[1].color}`,
+        `#${state.defaultColors[2].color}`,
+        `#${state.defaultColors[3].color}`,
+        `#${state.defaultColors[4].color}`
       ]
     }
 

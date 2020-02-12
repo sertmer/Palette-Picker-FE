@@ -19,7 +19,7 @@ const Color = ({color, locked, id, review, border}) => {
       <div className='color-column bubble' style={divStyle}>
         <img className='lock-icon hidden' src={icon} alt={text} 
         onClick={() => dispatch({type:'TOGGLE LOCK', id})}/>
-        <h2 className='color-h2 hidden'>#{color}</h2>
+        <h2 className='color-h2 hidden'>{color}</h2>
       </div>)
   } else {
     column = (
