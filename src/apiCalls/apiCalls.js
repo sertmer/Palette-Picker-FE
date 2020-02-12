@@ -40,7 +40,7 @@ export const postFolder = (folder) => {
 
 export const patchPalette = (palette, name, id) => {
   let folderId = window.location.pathname.split('/')[2]
-  console.log(folderId)
+  
   let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/${folderId}/palettes/${id}`
   const body = {
     palette_name: name,

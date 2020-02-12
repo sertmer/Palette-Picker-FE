@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Color Component it should match the snapshot with all the data passed through, locked set to false 1`] = `
+<Fragment>
+  <div
+    className="color-column"
+    style={
+      Object {
+        "backgroundColor": "##FFFFFF",
+      }
+    }
+  >
+    <img
+      alt="an icon of an unlocked lock"
+      className="lock-icon"
+      onClick={[Function]}
+      src="unlock.svg"
+    />
+    <h2
+      className="color-h2"
+    >
+      #
+      #FFFFFF
+    </h2>
+  </div>
+</Fragment>
+`;
+
+exports[`Color Component it should match the snapshot with all the data passed through, locked set to true 1`] = `
+<Fragment>
+  <div
+    className="color-column"
+    style={
+      Object {
+        "backgroundColor": "##FFFFFF",
+      }
+    }
+  >
+    <img
+      alt="an icon of a locked lock"
+      className="lock-icon"
+      onClick={[Function]}
+      src="lock.svg"
+    />
+    <h2
+      className="color-h2"
+    >
+      #
+      #FFFFFF
+    </h2>
+  </div>
+</Fragment>
+`;
+
+exports[`Color Component it should match the snapshot with all the data passed through, review and locked set to true 1`] = `
+<Fragment>
+  <div
+    className="color-column bubble"
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": "25px 0 0 25px",
+      }
+    }
+  >
+    <img
+      alt="an icon of a locked lock"
+      className="lock-icon hidden"
+      onClick={[Function]}
+      src="lock.svg"
+    />
+    <h2
+      className="color-h2 hidden"
+    >
+      #FFFFFF
+    </h2>
+  </div>
+</Fragment>
+`;
+
+exports[`Color Component it should match the snapshot with all the data passed through, review set to false and locked set to true 1`] = `
+<Fragment>
+  <div
+    className="color-column bubble"
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": "25px 0 0 25px",
+      }
+    }
+  >
+    <img
+      alt="an icon of an unlocked lock"
+      className="lock-icon hidden"
+      onClick={[Function]}
+      src="unlock.svg"
+    />
+    <h2
+      className="color-h2 hidden"
+    >
+      #FFFFFF
+    </h2>
+  </div>
+</Fragment>
+`;
