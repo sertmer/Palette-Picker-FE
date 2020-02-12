@@ -114,7 +114,7 @@ describe('apiCalls', () => {
         })
       })
 
-      expect(getPalettes()).rejects.toEqual(Error('Failed fetching folders'))
+      expect(getPalettes()).rejects.toEqual(Error('Failed fetching palettes'))
     })
 
     it('should return an error if promise rejects', () => {
@@ -123,6 +123,59 @@ describe('apiCalls', () => {
       })
 
       expect(getPalettes()).rejects.toEqual(Error('fetch failed'))
+    })
+  })
+
+  describe('postFolder', () => {
+    let mockResponse, mockFolder, mockOptions
+    beforeEach(() => {
+      mockResponse = {id: 1}
+      mockFolder = {
+        folder_name: 'Colors out of Space'
+      }
+      mockOptions = {
+        method: 'POST',
+        body: JSON.stringify(mockFolder),
+        headers: {
+          'Content-Type': 'application/json'  
+        }
+      }
+  
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => {
+            return Promise.resolve(mockResponse)
+          }
+        })
+      })
+    })
+    it('should call fetch with the right url', () => {
+      let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/`
+      postFolder(mockFolder)
+      expect(window.fetch).toHaveBeenCalledWith(url, mockOptions)
+    })
+
+    it('return an id', () => {
+      expect(postFolder(mockFolder)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(postFolder(mockFolder)).rejects.toEqual(Error('Error posting folder'))
+    })
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(postFolder(mockFolder)).rejects.toEqual(Error('fetch failed'))
     })
   })
 })
