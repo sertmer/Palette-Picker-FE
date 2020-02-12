@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useStore } from '../App/App';
 import './PaletteContainer.scss'
 import Color from '../Color/Color';
@@ -7,7 +8,7 @@ import lockedIcon from '../../Images/lock.svg';
 import unlockedIcon from '../../Images/unlock.svg';
 import heart from '../../Images/002-heart.svg';
 import { randomColorGenerator } from '../App/App';
-import { patchPalette, deletePalette } from '../../apiCalls/apiCalls';
+import { patchPalette, deletePalette, deleteFolder } from '../../apiCalls/apiCalls';
 
 
 const displayEditMenu = (e, id=false) => {
@@ -21,6 +22,7 @@ const displayEditMenu = (e, id=false) => {
 const PaletteContainer = ({ palette, name, id }) => {
   const [ triggerRender, setTriggerRender ] = useState(true)
   const { state, dispatch } = useStore();
+  const history = useHistory();
   
   let colorsToDisplay, container, icon, text;
   
@@ -45,10 +47,21 @@ const PaletteContainer = ({ palette, name, id }) => {
     displayEditMenu(e, id)
   }
 
-  const handleDelete = (id, e) => {
+  const handleDelete = (id, e) => {      
     deletePalette(id)
-      .then(res => res)
+      .then(res => {
+        e.target.parentNode.parentNode.parentNode.parentNode.remove()
+      })
       .catch(error => console.log(error))
+    
+
+    if (state.currentPalettes.length === 1) {
+      deleteFolder()
+        .then(res => {
+          history.push('/')
+        })
+        .catch(error => console.log(error))
+    }
   }
   
   if (!palette) {
