@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useStore } from '../App/App';
 import './PaletteContainer.scss'
 import Color from '../Color/Color';
@@ -7,8 +8,9 @@ import lockedIcon from '../../Images/lock.svg';
 import unlockedIcon from '../../Images/unlock.svg';
 import heart from '../../Images/002-heart.svg';
 import { randomColorGenerator } from '../App/App';
-import { patchPalette } from '../../apiCalls/apiCalls';
+import { patchPalette, deletePalette, deleteFolder } from '../../apiCalls/apiCalls';
 import PropTypes from 'prop-types'
+
 
 
 const displayEditMenu = (e, id=false) => {
@@ -20,7 +22,9 @@ const displayEditMenu = (e, id=false) => {
 
 
 const PaletteContainer = ({ palette, name, id }) => {
+  const [ triggerRender, setTriggerRender ] = useState(true)
   const { state, dispatch } = useStore();
+  const history = useHistory();
   
   let colorsToDisplay, container, icon, text;
   
@@ -45,6 +49,23 @@ const PaletteContainer = ({ palette, name, id }) => {
       .catch(error => console.error(error))
     displayEditMenu(e, id)
   }
+
+  const handleDelete = (id, e) => {      
+    deletePalette(id)
+      .then(res => {
+        e.target.parentNode.parentNode.parentNode.parentNode.remove()
+      })
+      .catch(error => console.log(error))
+    
+
+    if (state.currentPalettes.length === 1) {
+      deleteFolder()
+        .then(res => {
+          history.push('/')
+        })
+        .catch(error => console.log(error))
+    }
+  }
   
   if (!palette) {
     colorsToDisplay = state.defaultColors.map((element, idx) => {
@@ -66,7 +87,7 @@ const PaletteContainer = ({ palette, name, id }) => {
     })
 
     container = (
-      <section>
+      <section className='palette-section'>
         <div className='palette-review-div-wrapper'>
           <section className='speech-bubble'>
             <div className='inner-bubble-div'>
@@ -76,7 +97,7 @@ const PaletteContainer = ({ palette, name, id }) => {
           <h2 className='palette-name-h2'>{name}</h2>
           <div className='edit-delete-div'>
             <button type='button' className='edit-btn' onClick={(e) => displayEditMenu(e)}>EDIT</button>
-            <p className='delete-btn'>🗑</p>
+            <p className='delete-btn' onClick={(e) => handleDelete(id, e)}>🗑</p>
           </div>
         </div>
         <div className='edit-menu hidden'>

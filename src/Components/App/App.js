@@ -7,8 +7,13 @@ import Main from '../Main/Main';
 import { Route, Switch, Link } from 'react-router-dom';
 
 export const newColorGenerator = () => {
-  return Math.floor(Math.random()*16777215).toString(16);
+  let color =  Math.floor(Math.random()*16777215).toString(16);
+  if (color.toString().length < 6) {
+    newColorGenerator()
+  }
+  return color
 };
+
 const defaultState = {
   defaultColors: [
     {color: `${newColorGenerator()}`, locked: false},
