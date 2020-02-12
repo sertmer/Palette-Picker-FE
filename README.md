@@ -46,7 +46,7 @@ Users can:
 
 ## Future Iterations 
 Future iterations of this project will include the following:
-* Refining Stylinh
+* Refining Styling
 
 ## Project Members
 This project was done at Turing School of Software and Design.
