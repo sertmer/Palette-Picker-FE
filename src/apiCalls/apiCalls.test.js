@@ -1,4 +1,3 @@
-
 import { getFolders, getPalettes, postFolder, patchPalette, postPalette }from './apiCalls';
 
 describe('apiCalls', () => {
@@ -176,6 +175,81 @@ describe('apiCalls', () => {
       })
 
       expect(postFolder(mockFolder)).rejects.toEqual(Error('fetch failed'))
+    })
+  })
+
+  describe('patchPalette', () => {
+    let mockResponse, mockPalette, mockOptions, mockFolderId, mockPaletteId, mockName
+    
+    beforeEach(() => {
+      mockFolderId = 2
+      mockPaletteId = 2
+      
+      mockResponse = {
+        palette_name: 'colors to defeat capitalism', 
+        color_one: '#blue',
+        color_two: '#brown',
+        color_three: '#green',
+        color_four: '#ffffff',
+        color_five: '#111111',
+        folder_id: mockFolderId
+      }
+
+      mockName = 'colors to defeat capitalism'
+
+      mockPalette = [
+        { color: '#blue' },
+        { color: '#brown' },
+        { color: '#green' },
+        { color: '#ffffff' },
+        { color: '#111111' }
+      ]
+
+      mockOptions = {
+        method: 'PATCH',
+        body: JSON.stringify(mockResponse),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+
+      
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => {
+            return Promise.resolve(mockResponse)
+          }
+        })
+      })
+    })
+      
+    it('should call fetch with the right url', () => {
+      let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/${mockFolderId}/palettes/${mockPaletteId}`
+      patchPalette(mockPalette, mockName, mockPaletteId, mockFolderId)
+      expect(window.fetch).toHaveBeenCalledWith(url, mockOptions)
+    })
+
+    it('return the updated palette', () => {
+      expect(patchPalette(mockPalette, mockName, mockPaletteId, mockFolderId)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(patchPalette(mockPalette, mockName, mockPaletteId, mockFolderId)).rejects.toEqual(Error('Error updating palette'))
+    })
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(patchPalette(mockPalette, mockName, mockPaletteId, mockFolderId)).rejects.toEqual(Error('fetch failed'))
     })
   })
 
