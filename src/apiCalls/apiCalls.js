@@ -88,3 +88,23 @@ export const postPalette = (palette, folder_id) => {
       return res.json()
     })
 }
+
+export const deletePalette = (id) => {
+  let folderId = window.location.pathname.split('/')[2]
+  let url = process.env.REACT_APP_BACKEND_URL + `/api/v1/folders/${folderId}/palettes/${id}`
+
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'  
+    }
+  }
+  
+  return fetch(url, options)
+    .then(res => {
+      if (!res.ok){
+        throw Error('Error posting palette')
+      }
+      return res.json()
+    })
+}

@@ -29,7 +29,7 @@ const Folder = ({ id }) => {
         dispatch({type: 'SET CURRENT PALETTES', payload: lockedDataArr})
       })
       .catch(error => console.error(`Something went wrong ${error}`))
-  }, [])
+  })
 
   let palettesArray = state.currentPalettes.map(palette => {
     let paletteArr = Object.values(palette)
