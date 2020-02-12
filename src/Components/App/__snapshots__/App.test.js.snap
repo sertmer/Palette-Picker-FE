@@ -1,71 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App should match the snapshot 1`] = `
-<ContextProvider
-  value={
-    Object {
-      "dispatch": [Function],
-      "state": Object {
-        "currentPalettes": Array [],
-        "defaultColors": Array [
-          Object {
-            "color": "ecfd53",
-            "locked": false,
-          },
-          Object {
-            "color": "b7c0df",
-            "locked": false,
-          },
-          Object {
-            "color": "f7ba45",
-            "locked": false,
-          },
-          Object {
-            "color": "58570d",
-            "locked": false,
-          },
-          Object {
-            "color": "d187f4",
-            "locked": false,
-          },
-        ],
-      },
-    }
-  }
->
-  <main
-    className="App"
-  >
-    <header
-      className="App-header"
-    >
-      <Link
-        className="home-link"
-        to="/"
-      >
-        Palette Picker
-      </Link>
-    </header>
-    <Switch>
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/folders"
-      />
-      <Route
-        exact={true}
-        path="/folders/:folderId/palettes"
-        render={[Function]}
-      />
-      <Route
-        component={Object {}}
-      />
-    </Switch>
-  </main>
-</ContextProvider>
+<h2>
+  bad url, homie
+</h2>
 `;

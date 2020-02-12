@@ -2,7 +2,7 @@ import React, { useReducer, createContext, useContext } from 'react';
 import './App.scss';
 import FoldersContainer from '../FoldersContainer/FoldersContainer';
 import Folder from '../Folder/Folder';
-import NoURLMatch from '../NoURLMatch/NoURLMatch.test';
+import NoURLMatch from '../NoURLMatch/NoURLMatch';
 import Main from '../Main/Main';
 import { Route, Switch, Link } from 'react-router-dom';
 
