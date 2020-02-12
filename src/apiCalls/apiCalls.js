@@ -14,7 +14,7 @@ export const getPalettes = (id) => {
   return fetch(url)
     .then(res => {
       if(!res.ok) {
-        throw Error('Failed fetching folders')
+        throw Error('Failed fetching palettes')
       }
       return res.json()})
 }

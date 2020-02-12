@@ -25,7 +25,6 @@ describe('apiCalls', () => {
           json: () => Promise.resolve(mockResponse)
         })
       })
-
     })
 
     it('should call fetch with the correct url', () => {
@@ -36,6 +35,94 @@ describe('apiCalls', () => {
 
     it('should return an array of folders', () => {
       expect(getFolders()).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(getFolders()).rejects.toEqual(Error('Failed fetching folders'))
+    })
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(getFolders()).rejects.toEqual(Error('fetch failed'))
+    })
+  })
+
+  describe('getPalettes', () => {
+    let mockResponse = [
+       { id: 1,
+        palette_name: 'colors to make robbie blush', 
+        color_one: '#80adaa',
+        color_two: '#d9c9fb',
+        color_three: '#9c5f3d',
+        color_four: '#4ba9b3',
+        color_five: '#a6617c',
+        folder_id: 1 
+      },
+      { id: 2,
+        palette_name: 'colors to defeat trump', 
+        color_one: '#blue',
+        color_two: '#brown',
+        color_three: '#green',
+        color_four: '#ffffff',
+        color_five: '#11111',
+        folder_id: 2 
+      },
+      { id: 3,
+        palette_name: 'colors to grant yr wishes', 
+        color_one: '#blue',
+        color_two: '#brown',
+        color_three: '#green',
+        color_four: '#ffffff',
+        color_five: '#11111',
+        folder_id: 3 
+      }
+    ]
+
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should call fetch with the correct url', () => {
+      const mockFolderId = undefined
+      let url = `${process.env.REACT_APP_BACKEND_URL}/api/v1/folders/${mockFolderId}/palettes`;
+      getPalettes()
+      expect(window.fetch).toHaveBeenCalledWith(url)
+    })
+
+    it('should return an array of folders', () => {
+      expect(getPalettes()).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(getPalettes()).rejects.toEqual(Error('Failed fetching folders'))
+    })
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(getPalettes()).rejects.toEqual(Error('fetch failed'))
     })
   })
 })
