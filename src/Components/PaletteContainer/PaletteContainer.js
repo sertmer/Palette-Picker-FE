@@ -37,7 +37,8 @@ const PaletteContainer = ({ palette, name, id }) => {
   }
 
   const handlePatch = (palette, name, id, e) => {
-    patchPalette(palette, name, id)
+    let folderId = window.location.pathname.split('/')[2]
+    patchPalette(palette, name, id, folderId)
       .then(res => console.log(res))
       .then(data => console.log(data))
       .catch(error => console.error(error))
