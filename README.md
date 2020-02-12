@@ -43,6 +43,23 @@ Users can:
 * Delete Folders
 * Delete Palettes
 
+## Generate Color Palette
+![2020-02-12 15 43 25](https://user-images.githubusercontent.com/27719824/74384916-8b4e4700-4daf-11ea-9d76-5b6c91a6215a.gif)
+
+
+## Save Palette 
+![2020-02-12 15 44 15](https://user-images.githubusercontent.com/27719824/74384797-4f1ae680-4daf-11ea-902c-2a09f5e9f46b.gif)
+
+## Review Palette
+![2020-02-12 15 47 24](https://user-images.githubusercontent.com/27719824/74384971-ae78f680-4daf-11ea-90ad-f7237dc9aa96.gif)
+
+## Edit Palette
+![2020-02-12 15 47 53](https://user-images.githubusercontent.com/27719824/74385082-f1d36500-4daf-11ea-90a4-8b453a7863c4.gif)
+
+## Delete Palette
+![2020-02-12 15 48 15](https://user-images.githubusercontent.com/27719824/74385026-cbadc500-4daf-11ea-826c-61a5119d8268.gif)
+
+---
 
 ## Future Iterations 
 Future iterations of this project will include the following:
