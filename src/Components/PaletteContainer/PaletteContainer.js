@@ -8,6 +8,7 @@ import unlockedIcon from '../../Images/unlock.svg';
 import heart from '../../Images/002-heart.svg';
 import { randomColorGenerator } from '../App/App';
 import { patchPalette } from '../../apiCalls/apiCalls';
+import PropTypes from 'prop-types'
 
 
 const displayEditMenu = (e, id=false) => {
@@ -100,3 +101,9 @@ const PaletteContainer = ({ palette, name, id }) => {
 }
 
 export default PaletteContainer;
+
+PaletteContainer.propTypes = {
+  palette: PropTypes.object,
+  name: PropTypes.string,
+  id: PropTypes.number
+}
