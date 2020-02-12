@@ -53,10 +53,10 @@ const PaletteContainer = ({ palette, name, id }) => {
   const handleDelete = (id, e) => {      
     deletePalette(id)
       .then(res => {
-        e.target.parentNode.parentNode.parentNode.parentNode.remove()
       })
       .catch(error => console.log(error))
     
+        e.target.parentNode.parentNode.parentNode.parentNode.remove()
 
     if (state.currentPalettes.length === 1) {
       deleteFolder()
