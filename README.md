@@ -46,6 +46,9 @@ Users can:
 * Delete Folders
 * Delete Palettes
 
+## Wireframes
+![IMG_7341](https://user-images.githubusercontent.com/49926352/74465835-5b587f80-4e53-11ea-961e-7b76bd5bb53b.JPG)
+
 ## Generate Color Palette
 ![2020-02-12 15 43 25](https://user-images.githubusercontent.com/27719824/74384916-8b4e4700-4daf-11ea-9d76-5b6c91a6215a.gif)
 
@@ -67,6 +70,8 @@ Users can:
 ## Future Iterations 
 Future iterations of this project will include the following:
 * Refining Styling
+* Preventing duplicate folder names
+* Preventing duplicate palette names in the same folder
 
 ## Project Members
 This project was done at Turing School of Software and Design.
