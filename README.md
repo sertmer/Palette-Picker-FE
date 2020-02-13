@@ -2,6 +2,9 @@
 
 Created and built by James Miller and Scott Ertmer
 
+# Deployed Application
+* [Heroku App](https://palettepicker2020.herokuapp.com/)
+
 ## Description
 
 PalettePicker is an application that generates 5 random colors, and allows users to 'lock' colors of their choice, while continuing generate random colors for the unlocked colors. Users can save name their palettes, create folders, and save the palettes to those folder. Users can name, save, edit and delete both folders and palettes, and have the changes reflected in the PalettePicker API we built.
