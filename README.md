@@ -2,7 +2,7 @@
 
 Created and built by James Miller and Scott Ertmer
 
-# Deployed Application
+## Deployed Application
 * [Heroku App](https://palettepicker2020.herokuapp.com/)
 
 ## Description
